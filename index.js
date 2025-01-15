@@ -44,6 +44,32 @@ const defaultSettings = {
 let inApiCall = false;
 
 /**
+ * Removes the last autoResp message from the chat
+ * @param {getContext.chat} chat
+ */
+function removeLastAutoRespMessage(chat = getContext().chat) {
+    let lastMessage = chat[chat.length - 1];
+    if (!lastMessage?.extra || lastMessage?.extra?.model !== 'autoResp') {
+        return;
+    }
+
+    // 使用 jQuery 选择器找到最后一条消息的 DOM 元素
+    const target = $('#chat').find(`.mes[mesid=${lastMessage.mesId}]`);
+    if (target.length === 0) {
+        return;
+    }
+
+    // 设置编辑消息的 ID
+    // 这行代码的作用是将最后一条消息的ID设置为当前正在操作的消息ID。这样做的目的是在触发删除操作时，能够记录下这条消息的ID，以便在需要时可以进行进一步的处理。
+    setEditedMessageId(lastMessage.mesId);
+
+    // 在找到的 DOM 元素中，找到类为 .mes_edit_delete 的元素，并触发点击事件。
+    // 传递一个对象 { fromSlashCommand: true } 作为事件的额外参数，表示该点击事件是由斜杠命令触发的。
+    target.find('.mes_edit_delete').trigger('click', { fromSlashCommand: true });
+}
+
+
+/**
  * Parses the autoResp response and returns the suggestions buttons
  * @param {string} response
  * @returns {string} text
@@ -126,30 +152,7 @@ async function requestAutoRespResponses() {
     await sendMessageToUI(parsedResponse);
 }
 
-/**
- * Removes the last autoResp message from the chat
- * @param {getContext.chat} chat
- */
-function removeLastAutoRespMessage(chat = getContext().chat) {
-    let lastMessage = chat[chat.length - 1];
-    if (!lastMessage?.extra || lastMessage?.extra?.model !== 'autoResp') {
-        return;
-    }
 
-    // 使用 jQuery 选择器找到最后一条消息的 DOM 元素
-    const target = $('#chat').find(`.mes[mesid=${lastMessage.mesId}]`);
-    if (target.length === 0) {
-        return;
-    }
-
-    // 设置编辑消息的 ID
-    // 这行代码的作用是将最后一条消息的ID设置为当前正在操作的消息ID。这样做的目的是在触发删除操作时，能够记录下这条消息的ID，以便在需要时可以进行进一步的处理。
-    setEditedMessageId(lastMessage.mesId);
-
-    // 在找到的 DOM 元素中，找到类为 .mes_edit_delete 的元素，并触发点击事件。
-    // 传递一个对象 { fromSlashCommand: true } 作为事件的额外参数，表示该点击事件是由斜杠命令触发的。
-    target.find('.mes_edit_delete').trigger('click', { fromSlashCommand: true });
-}
 
 /**
  * Sends the parsed autoResp response to the SillyTavern UI
