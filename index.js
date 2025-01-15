@@ -132,7 +132,7 @@ async function requestAutoRespResponses() {
         return;
     }
 
-    removeLastautoRespMessage(chat);
+    // removeLastautoRespMessage(chat);
 
     await waitForGeneration();
 
