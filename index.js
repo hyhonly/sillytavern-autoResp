@@ -28,7 +28,7 @@ const defaultSettings = {
 4. 缓慢地推动故事发展，不结束当前场景。
 5. 推动故事前进，如果合适，可以结束当前场景。
 
-请确保每个建议都被 `<suggestion>` 标签包围，例如：
+请确保每个建议都被 <suggestion> 标签包围，例如：
 <suggestion>建议1</suggestion>
 <suggestion>建议2</suggestion>
 ...
