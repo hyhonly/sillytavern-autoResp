@@ -1,0 +1,36 @@
+<div id="autoResp_settings">
+    <div class="inline-drawer">
+        <div class="inline-drawer-toggle inline-drawer-header">
+            <b>auto Responses</b>
+            <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
+        </div>
+        <div class="inline-drawer-content">
+            <div class="autoResp_settings-extension_block flex-container">
+                <label for="autpResp_llm_prompt">LLM Prompt for Options</label>
+                <small><i id="hint">Use {{suggestionNumber}} for the Number of Responses.</i></small>
+                <textarea id="autoResp_llm_prompt" class="text_pole textarea_compact" rows="4" placeholder="Enter the system prompt for the LLM to generate autoResp options"></textarea>
+            </div>
+            </br>
+            <div class="autoResp_settings-extension_block flex-container">
+                <label for="autoResp_llm_prompt_impersonate">LLM Prompt for Impersonation</label>
+                <small><i id="hint">Use {{suggestionText}} for the text from the chosen context.</i></small>
+                <textarea id="autoResp_llm_prompt_impersonate" class="text_pole textarea_compact" rows="4" placeholder="Enter the system prompt for the LLM to generate impersonated responses"></textarea>
+            </div>
+            </br>
+            <label class="checkbox_label" for="autoResp_apply_wi_an">
+                <input id="autoResp_apply_wi_an" type="checkbox" />
+                <span>Apply World Info / Author's Note</span>
+            </label>
+            </br>
+            <label for="autoResp_num_responses">Number of Responses: <span id="autoResp_num_responses_value">3</span></label>
+            <div class="range-block">
+                <input id="autoResp_num_responses" type="range" min="1" max="10" step="1" value="3" />
+            </div>
+            </br>
+            <label for="autoResp_response_length">API response length: <span id="autoResp_response_length_value">100</span></label>
+            <div class="range-block">
+                <input id="autoResp_response_length" type="range" min="1" max="2000" step="25" value="500" />
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,2 +1,1 @@
-# sillytavern-autoResp
-帮助那些不善于聊天的人跟AI聊天。站在用户的角度给出与AI聊天的建议选项。
+sillytavern autoResponse 回复扩展 是一个为 SillyTavern 聊天增加互动性的工具，通过生成多个选择来让用户决定故事走向。主要功能包括自定义回复选项数量、模拟选定回复、通过魔法棒按钮快速访问等。安装通过 SillyTavern 的内置扩展安装器完成，使用时需配置 LLM 提示并设置回复选项数量。
